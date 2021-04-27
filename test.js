@@ -31,26 +31,44 @@ function verboseCatch(error) {
   throw error;
 }
 
-// curl --location --request POST 'http://10.0.0.25:3447/fhir/Organization' \
-//   --header 'Content-Type: application/json' \
-//   --data-binary '@fixtures/organisation.json'
+function warnVersionConflict(error) {
+  if (error.response && error.response.status == 412) {
+    console.warn("⚠ Got 412, already exists.");
+    return error.response;
+  }
 
-function postOrganization(path) {
+  throw error;
+}
+
+// curl --location --request POST 'http://localhost:3447/fhir/Organization' \
+//   --header 'Content-Type: application/json' \
+//   --header 'If-None-Exist: identifier=Gastro' \
+//   --data-binary '@fixtures/organization.json'
+
+function postOrganization(data, uniqueIdentifier) {
+  const headers = uniqueIdentifier ? { "If-None-Exist": uniqueIdentifier } : {};
+
   return hapiFhir
-    .post("Organization", fs.readFileSync(path, "utf8"))
+    .post("Organization", data, { headers })
+    .catch(warnVersionConflict)
     .catch(verboseCatch);
 }
 
-function postPatient(path) {
+function postPatient(data, uniqueIdentifier) {
+  const headers = uniqueIdentifier ? { "If-None-Exist": uniqueIdentifier } : {};
+
   return hapiFhir
-    .post("Patient", fs.readFileSync(path, "utf8"))
+    .post("Patient", data, { headers })
+    .catch(warnVersionConflict)
     .catch(verboseCatch);
 }
 
 (async function () {
-  let response = await postOrganization("fixtures/organization.json");
+  const organization = fs.readFileSync("fixtures/organization.json", "utf8");
+  let response = await postOrganization(organization, "identifier=Gastro");
   console.dir(response.data);
 
-  response = await postPatient("fixtures/patient.json");
+  const patient = fs.readFileSync("fixtures/patient.json", "utf8");
+  response = await postPatient(patient, "identifier=12345");
   console.dir(response.data);
 })();
