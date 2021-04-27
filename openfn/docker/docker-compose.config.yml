@@ -1,0 +1,13 @@
+version: '3.3'
+
+services:
+  openfn:
+    environment:
+      PROJECT_DIR: /opt/app/project
+      # MIX_ENV: prod
+    volumes:
+      - microservice_example:/opt/app/project
+
+volumes:
+  microservice_example:
+    external: true

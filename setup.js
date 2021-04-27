@@ -14,9 +14,8 @@ function initDocker() {
     [
       "docker:instant",
       "init",
-      "core",
-      "openfnMicroservice",
-      "--custom-package=../microservice",
+      "openfnHimHapi",
+      "--custom-package=../openfn",
     ],
     { cwd: "./instant" }
   );
@@ -27,8 +26,8 @@ function initDocker() {
   await clone("git@github.com:openhie/instant.git");
   process.stdout.write(" ✅");
 
-  process.stdout.write("\nCloning openfn/microservice");
-  await clone("git@github.com:openfn/microservice.git");
+  // process.stdout.write("\nCloning openfn/microservice");
+  // await clone("git@github.com:openfn/microservice.git");
 
   process.stdout.write(" ✅");
   process.stdout.write("\n");

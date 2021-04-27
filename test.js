@@ -88,9 +88,13 @@ function getPatients(search) {
     1,
     "Expected exactly one patient with identifier of 12345."
   );
+
+  console.log("👍 Everything checks out.")
 })().catch((e) => {
   if (e instanceof assert.AssertionError) {
     console.error(e.message);
     process.exitCode = 10;
+  } else { 
+    throw e;
   }
 });

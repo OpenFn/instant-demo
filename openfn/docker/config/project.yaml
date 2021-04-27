@@ -1,0 +1,52 @@
+jobs:
+  job-1:
+    expression: >
+      alterState((state) => {
+        console.log("Hi there!")
+        return state; 
+      })
+    adaptor: '@openfn/language-common'
+    trigger: trigger-2
+  job-2:
+    expression: none
+    adaptor: '@openfn/language-common'
+    trigger: trigger-3
+  job-3:
+    expression: none
+    adaptor: '@openfn/language-common'
+    trigger: trigger-3
+  job-cron:
+    expression: >
+      alterState(({counter=0}) => {
+        console.log("Hi there!")
+        return {counter: counter+1}; 
+      })
+    adaptor: '@openfn/language-common'
+    trigger: cron-test
+  test-flow:
+    expression: >
+      alterState((state) => {
+        console.log("Test flow after-cron job");
+        console.log(state);
+
+        return state;
+      })
+    adaptor: '@openfn/language-common'
+    trigger: after-cron
+
+
+
+triggers:
+  trigger-2:
+    criteria: '{"number":2}'
+  trigger-3:
+    criteria: '{"b":2}'
+  cron-test:
+    cron: '* * * * *'
+  after-cron:
+    success: job-cron
+
+credentials:
+  my-secret-credential:
+    username: 'user@example.com'
+    password: 'shhh'
