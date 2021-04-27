@@ -1,0 +1,14 @@
+{
+  "name": "instant-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "setup": "node ./setup.js",
+    "test": "node ./test.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "execa": "^5.0.0"
+  }
+}
