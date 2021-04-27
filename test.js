@@ -63,6 +63,15 @@ function postPatient(data, uniqueIdentifier) {
     .catch(verboseCatch);
 }
 
+const url = require("url");
+const assert = require("assert");
+
+function getPatients(search) {
+  const params = new url.URLSearchParams(search);
+
+  return hapiFhir.get(`Patient?${params.toString()}`).catch(verboseCatch);
+}
+
 (async function () {
   const organization = fs.readFileSync("fixtures/organization.json", "utf8");
   let response = await postOrganization(organization, "identifier=Gastro");
@@ -71,4 +80,17 @@ function postPatient(data, uniqueIdentifier) {
   const patient = fs.readFileSync("fixtures/patient.json", "utf8");
   response = await postPatient(patient, "identifier=12345");
   console.dir(response.data);
-})();
+
+  response = await getPatients({ identifier: 12345 });
+
+  assert.strictEqual(
+    response.data.total,
+    1,
+    "Expected exactly one patient with identifier of 12345."
+  );
+})().catch((e) => {
+  if (e instanceof assert.AssertionError) {
+    console.error(e.message);
+    process.exitCode = 10;
+  }
+});
