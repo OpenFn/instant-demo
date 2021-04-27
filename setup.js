@@ -1,11 +1,13 @@
 const execa = require("execa");
 
-function clone(repo) {
-  return execa("git", ["clone", repo]).catch((e) => {
+async function clone(repo) {
+  try {
+    return execa("git", ["clone", repo]);
+  } catch (e) {
     if (e.exitCode != 128) {
       throw e;
     }
-  });
+  }
 }
 
 function initDocker() {
