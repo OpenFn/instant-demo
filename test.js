@@ -2,12 +2,22 @@ const axios = require("axios").default;
 const fs = require("fs");
 
 const host = process.env["TARGET_HOST"] || "localhost";
-const fhirBaseUrl = `http://${host}:3447/fhir`;
 
-// HAPI FHIR REST Client
-const hapiFhir = axios.create({
-  baseURL: fhirBaseUrl,
-  headers: { "Content-Type": "application/json" },
+// const fhirBaseUrl = `http://${host}:3447/fhir`;
+
+// // HAPI FHIR REST Client
+// const hapiFhir = axios.create({
+//   baseURL: fhirBaseUrl,
+//   headers: { "Content-Type": "application/json" },
+//   responseType: "json",
+// });
+
+const openHimFhirBaseUrl = `http://${host}:5001/fhir`;
+
+// HAPI FHIR via OpenHIM Client
+const openHimFhir = axios.create({
+  baseURL: openHimFhirBaseUrl,
+  headers: { "Content-Type": "application/json", Authorization: "Custom test" },
   responseType: "json",
 });
 
@@ -48,7 +58,7 @@ function warnVersionConflict(error) {
 function postOrganization(data, uniqueIdentifier) {
   const headers = uniqueIdentifier ? { "If-None-Exist": uniqueIdentifier } : {};
 
-  return hapiFhir
+  return openHimFhir
     .post("Organization", data, { headers })
     .catch(warnVersionConflict)
     .catch(verboseCatch);
@@ -57,7 +67,7 @@ function postOrganization(data, uniqueIdentifier) {
 function postPatient(data, uniqueIdentifier) {
   const headers = uniqueIdentifier ? { "If-None-Exist": uniqueIdentifier } : {};
 
-  return hapiFhir
+  return openHimFhir
     .post("Patient", data, { headers })
     .catch(warnVersionConflict)
     .catch(verboseCatch);
@@ -69,7 +79,7 @@ const assert = require("assert");
 function getPatients(search) {
   const params = new url.URLSearchParams(search);
 
-  return hapiFhir.get(`Patient?${params.toString()}`).catch(verboseCatch);
+  return openHimFhir.get(`Patient?${params.toString()}`).catch(verboseCatch);
 }
 
 (async function () {
@@ -89,12 +99,12 @@ function getPatients(search) {
     "Expected exactly one patient with identifier of 12345."
   );
 
-  console.log("👍 Everything checks out.")
+  console.log("👍 Everything checks out.");
 })().catch((e) => {
   if (e instanceof assert.AssertionError) {
     console.error(e.message);
     process.exitCode = 10;
-  } else { 
+  } else {
     throw e;
   }
 });

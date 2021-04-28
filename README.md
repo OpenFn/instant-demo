@@ -26,3 +26,9 @@ The `setup` step will take a while, so grab a coffee.
 ```
 yarn test
 ```
+
+## Notes
+
+- The HAPI FHIR service runs on port `3447`
+- The OpenHIM channel that we go through is on port `5001`.  
+  The API is identical, with the exception of a required `Authorization` header.
