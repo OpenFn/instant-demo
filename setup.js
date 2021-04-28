@@ -2,7 +2,7 @@ const execa = require("execa");
 
 async function clone(repo) {
   try {
-    return execa("git", ["clone", repo]);
+    return await execa("git", ["clone", "--single-branch", repo]);
   } catch (e) {
     if (e.exitCode != 128) {
       throw e;
@@ -30,8 +30,8 @@ function initDocker() {
 
   // process.stdout.write("\nCloning openfn/microservice");
   // await clone("git@github.com:openfn/microservice.git");
+  // process.stdout.write(" ✅");
 
-  process.stdout.write(" ✅");
   process.stdout.write("\n");
 
   await initDocker().stdout.pipe(process.stdout);

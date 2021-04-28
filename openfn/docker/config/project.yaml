@@ -1,52 +1,40 @@
 jobs:
-  job-1:
+  create-patient:
     expression: >
-      alterState((state) => {
-        console.log("Hi there!")
-        return state; 
-      })
-    adaptor: '@openfn/language-common'
-    trigger: trigger-2
-  job-2:
-    expression: none
-    adaptor: '@openfn/language-common'
-    trigger: trigger-3
-  job-3:
-    expression: none
-    adaptor: '@openfn/language-common'
-    trigger: trigger-3
-  job-cron:
+      post('Patient', {
+        body: dataValue('$'),
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Custom test',
+          'If-None-Exist': state =>
+            `identifier=${dataValue('identifier[0].value')(state)}`,
+        },
+      });
+    adaptor: '@openfn/language-http'
+    trigger: patient-message
+    credential: openhim
+
+  create-organization:
     expression: >
-      alterState(({counter=0}) => {
-        console.log("Hi there!")
-        return {counter: counter+1}; 
-      })
-    adaptor: '@openfn/language-common'
-    trigger: cron-test
-  test-flow:
-    expression: >
-      alterState((state) => {
-        console.log("Test flow after-cron job");
-        console.log(state);
-
-        return state;
-      })
-    adaptor: '@openfn/language-common'
-    trigger: after-cron
-
-
+      post('Organization', {
+        body: dataValue('$'),
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Custom test',
+          'If-None-Exist': state =>
+            `identifier=${dataValue('identifier[0].value')(state)}`,
+        },
+      });
+    adaptor: '@openfn/language-http'
+    trigger: organization-message
+    credential: openhim
 
 triggers:
-  trigger-2:
-    criteria: '{"number":2}'
-  trigger-3:
-    criteria: '{"b":2}'
-  cron-test:
-    cron: '* * * * *'
-  after-cron:
-    success: job-cron
+  patient-message:
+    criteria: '{"resourceType":"Patient"}'
+  organization-message:
+    criteria: '{"resourceType":"Organization"}'
 
 credentials:
-  my-secret-credential:
-    username: 'user@example.com'
-    password: 'shhh'
+  openhim:
+    baseUrl: "http://10.0.0.25:5001/fhir/"

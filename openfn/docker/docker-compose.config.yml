@@ -1,4 +1,4 @@
-version: '3.3'
+version: "3.3"
 
 services:
   openfn:
@@ -6,8 +6,8 @@ services:
       PROJECT_DIR: /opt/app/project
       # MIX_ENV: prod
     volumes:
-      - microservice_example:/opt/app/project
+      - microservice_him_hapi:/opt/app/project
 
 volumes:
-  microservice_example:
+  microservice_him_hapi:
     external: true
