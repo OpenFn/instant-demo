@@ -4,12 +4,17 @@
   "main": "index.js",
   "scripts": {
     "setup": "node ./setup.js",
-    "test": "node ./test.js"
+    "test": "node ./test.js",
+    "run-expression": "(jq --slurp '{\"data\": .[0]} + {\"configuration\": .[1]}' $2 expressions/configuration.json > /tmp/state.json && yarn run core execute -l @openfn/language-http -e expressions/$1 -s /tmp/state.json)"
   },
   "license": "MIT",
   "dependencies": {
     "axios": "^0.21.1",
     "execa": "^5.0.0",
     "p-retry": "^4.5.0"
+  },
+  "devDependencies": {
+    "@openfn/core": "1.4.0",
+    "@openfn/language-http": "^3.1.5"
   }
 }
