@@ -3,28 +3,35 @@ const assert = require("assert");
 
 const { getPatients, postToInbox, isInboxAvailable } = require("./clients");
 
+function fixture(path) {
+  return fs.readFileSync(`fixtures/${path}`, "utf8"); 
+}
+
+function assertTrigger(response, trigger) {
+  assert.strictEqual(
+    response.data.data[0],
+    trigger,
+    `Payload didn't match the ${trigger} trigger`
+  );
+  
+}
+
 (async function () {
   console.log("Waiting for Microservice to be available...");
   await isInboxAvailable();
 
-  const organization = fs.readFileSync("fixtures/organization.json", "utf8");
-  let response = await postToInbox(organization);
+  let response = await postToInbox(fixture("organization.json"));
+  assertTrigger(response, "create-organization")
 
-  assert.strictEqual(
-    response.data.data[0],
-    "create-organization",
-    "Payload didn't match the create-organization trigger"
-  );
+  response = await postToInbox(fixture("patient.json"));
+  assertTrigger(response, "create-patient")
 
-  const patient = fs.readFileSync("fixtures/patient.json", "utf8");
-  response = await postToInbox(patient);
+  response = await postToInbox(fixture("commcare_sample.json"));
+  assertTrigger(response, "commcare-to-openhim")
 
-  assert.strictEqual(
-    response.data.data[0],
-    "create-patient",
-    "Payload didn't match the create-patient trigger"
-  );
 
+  // TODO: check for all patients... and work out why this is failing currently
+  //       I think I'm not doing the lookup/identifier thing correctly.
   response = await getPatients({ identifier: 12345 });
 
   assert.strictEqual(

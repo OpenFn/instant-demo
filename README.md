@@ -33,7 +33,7 @@ When testing this locally, you probably will at some point will want to take
 everything down and start over; this can be achieved like this:
 
 ```
-(cd instant && yarn docker:instant destroy core openfnMicroservice --custom-package="../microservice")
+(cd instant && yarn docker:instant destroy core openfnHimHapi --custom-package="../openfn")
 ```
 
 ## Notes
