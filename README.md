@@ -6,6 +6,22 @@ It contains a custom instant config (in `openfn/`) which loads everything.
 
 The `microservice` project.yaml file is located here: [`openfn/docker/config/project.yaml`](openfn/docker/config/project.yaml).
 
+## How data gets to HAPI FHIR
+
+Using the example payload [commcare_sample.json](fixtures/commcare_sample.json)
+we send that to the configured OpenFn Microservice.
+
+Microservice is configurated to run a job based on the shape of the incoming 
+payload _see [project.yaml](openfn/docker/config/project.yaml)_.
+
+The job `commcare-to-him` will match against this message and will be invoked
+performing the following actions:
+
+- creates a payload in the FHIR standard containing
+  - a Encounter resource that contains (`contained` resource field) a Paitent resource
+- sends the payload to OpenHIM
+- which in turn sends the payload to HAPI FHIR
+
 ## Setting up
 
 ```
