@@ -14,7 +14,7 @@
     "p-retry": "^4.5.0"
   },
   "devDependencies": {
-    "@openfn/core": "1.4.0",
+    "@openfn/core": "1.4.2",
     "@openfn/language-http": "^3.1.5"
   }
 }
