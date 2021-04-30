@@ -1,0 +1,23 @@
+# Elixir CircleCI 2.0 configuration file
+# Check https://circleci.com/docs/2.0/language-elixir/ for more details
+version: 2.1
+jobs:
+  docker_test:
+    machine:
+      image: ubuntu-2004:202101-01
+
+    steps:
+      - checkout
+
+      - run: npm install -g yarn
+
+      - run: yarn
+      - run: yarn setup
+      - run: yarn test
+
+
+# Orchestrate our job run sequence
+workflows:
+  tests:
+    jobs:
+      - docker_test
