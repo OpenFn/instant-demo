@@ -1,5 +1,4 @@
 # Elixir CircleCI 2.0 configuration file
-# Check https://circleci.com/docs/2.0/language-elixir/ for more details
 version: 2.1
 jobs:
   docker_test:

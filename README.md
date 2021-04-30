@@ -1,5 +1,7 @@
 # OpenFn & HAPI FHIR Demo
 
+[![CircleCI](https://circleci.com/gh/OpenFn/instant-demo.svg?style=svg)](https://circleci.com/gh/OpenFn/instant-demo)
+
 A demo of OpenFn Microservice, OpenHIM and HAPI FHIR using Instant OpenHIE.
 
 It contains a custom instant config (in `openfn/`) which loads everything.
