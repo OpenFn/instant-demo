@@ -68,7 +68,7 @@ async function isInboxAvailable() {
   const result = await pRetry(getIndex, {
     onFailedAttempt: (error) => {
       console.log(
-        `Attempt ${error.attemptNumber}/${error.retriesLeft} failed.`
+        `Attempt ${error.attemptNumber}/10 failed.`
       );
     },
     retries: 10,

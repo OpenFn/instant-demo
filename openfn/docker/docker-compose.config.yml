@@ -11,3 +11,8 @@ services:
 volumes:
   microservice_him_hapi:
     external: true
+
+networks:
+  default:
+    external:
+      name: instant_default
