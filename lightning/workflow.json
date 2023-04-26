@@ -1,0 +1,48 @@
+{
+  "start": "a",
+  "jobs": [
+    {
+      "id": "validate",
+      "adaptor": "common",
+      "state": {},
+      "configuration": {},
+      "expression": "./validate-submission.js",
+      "next": {
+        "convert": { "condition": "true" },
+        "dhis2": { "condition": "true" }
+      }
+    },
+    {
+      "id": "convert",
+      "adaptor": "common",
+      "configuration": {},
+      "state": {},
+      "expression": "./convert-to-fhir.js",
+      "next": {
+        "hapi": { "condition": "true" },
+        "google": { "condition": "true" }
+      }
+    },
+    {
+      "id": "hapi",
+      "adaptor": "fhir",
+      "configuration": "./tmp/hapi-credential.json",
+      "state": {},
+      "expression": "./send-to-hapi.js"
+    },
+    {
+      "id": "google",
+      "adaptor": "http",
+      "configuration": "./tmp/google-credential.json",
+      "state": {},
+      "expression": "./send-to-google.js"
+    },
+    {
+      "id": "dhis2",
+      "adaptor": "http",
+      "configuration": "./tmp/play-credential.json",
+      "state": {},
+      "expression": "./create-dhis2-tei.js"
+    }
+  ]
+}
