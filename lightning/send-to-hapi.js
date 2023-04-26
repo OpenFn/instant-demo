@@ -1,9 +1,20 @@
 fn(state => {
-  const { patient, encounter } = state;
-  console.log('Patient', patient);
-  console.log('Encounter', encounter);
+  const { patient, encounter } = state.data;
 
-  return state;
+  return { ...state, patient, encounter };
 });
 
-// post('blah.com');
+fn(state => {
+  return post('Patient', state.patient, state => {
+    const { encounter } = state;
+
+    encounter.body.subject.reference = `Patient/${state.data.id}`;
+    return { ...state, encounter };
+  })(state);
+});
+
+fn(state => {
+  const { encounter } = state;
+
+  return post('Encounter', encounter)(state);
+});

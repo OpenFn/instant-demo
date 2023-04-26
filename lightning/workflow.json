@@ -4,89 +4,43 @@
     {
       "id": "validate",
       "adaptor": "common",
-      "state": {
-        "data": {
-          "app_id": "aa",
-          "archived": false,
-          "attachments": {
-            "form.xml": {
-              "content_type": "text/xml",
-              "length": 11528,
-              "url": "https://www.commcarehq.org/a/x.xml"
-            }
-          },
-          "form": {
-            "#type": "data",
-            "@name": "Register New Patient",
-            "@uiVersion": "1",
-            "@version": "1",
-            "patient_data": {
-              "age": {
-                "age_at_registration_days": "181",
-                "gender": "female",
-                "birthDate": "2020-10-11",
-                "first_name": "test",
-                "last_name": "case"
-              },
-              "locations": {
-                "city": "k",
-                "clinic_code": "test_clinic",
-                "country": "Kenya"
-              },
-              "patient_id": "test_clinic-0009-01"
-            },
-            "case": {
-              "@case_id": "xxx",
-              "@date_modified": "2021-01-21T07:08:19.431000Z",
-              "@user_id": "aaa",
-              "@xmlns": "http://commcarehq.org/case/transaction/v2",
-              "create": {
-                "case_name": "test case",
-                "case_type": "patient",
-                "owner_id": "aaa"
-              }
-            }
-          }
-        }
-      },
       "configuration": {},
-      "expression": "./validate-submission.js",
+      "expression": "validate-submission.js",
       "next": {
-        "convert": { "condition": "true" },
-        "dhis2": { "condition": "true" }
+        "convert": true,
+        "dhis2": true
       }
     },
     {
       "id": "convert",
       "adaptor": "common",
       "configuration": {},
-      "state": {},
-      "expression": "./convert-to-fhir.js",
+      "data": {},
+      "expression": "convert-to-fhir.js",
       "next": {
-        "hapi": { "condition": "true" },
-        "google": { "condition": "true" }
+        "hapi": true,
+        "google": true
       }
     },
     {
       "id": "hapi",
-      "adaptor": "fhir",
+      "adaptor": "http",
       "configuration": "./tmp/hapi-credential.json",
-      "state": {},
-      "expression": "./send-to-hapi.js"
+      "data": {},
+      "expression": "send-to-hapi.js"
     },
     {
       "id": "google",
       "adaptor": "http",
-      "configuration": "./tmp/google-credential.json",
-      "state": {},
-      "expression": "./send-to-google.js"
+      "configuration": {},
+      "data": {},
+      "expression": "send-to-google.js"
     },
     {
       "id": "dhis2",
-      "adaptor": "http",
+      "adaptor": "dhis2",
       "configuration": "./tmp/play-credential.json",
-      "state": {},
-      "expression": "./create-dhis2-tei.js"
+      "expression": "create-dhis2-tei.js"
     }
   ]
 }
