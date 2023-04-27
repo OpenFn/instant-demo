@@ -19,8 +19,4 @@ fn(state => {
   return { ...state, patientMapping };
 });
 
-// fn(state => {
-//   return create('trackedEntityInstances', state.patientMapping)(state);
-// });
-
-create('trackedEntityInstances', state.patientMapping);
+create('trackedEntityInstances', state => state.patientMapping);
