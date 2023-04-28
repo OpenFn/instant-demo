@@ -2,8 +2,8 @@
 version: 2.1
 jobs:
   lightning_cli_test:
-    machine:
-      image: ubuntu-2004:202101-01
+    docker:
+      - image: cimg/node:18.0.0
 
     steps:
       - checkout
