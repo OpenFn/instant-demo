@@ -8,7 +8,7 @@ fhir, and sends it to two FHIR backends (HAPI and a Google FHIR api.)
 
 ```mermaid
 flowchart TD
-    c((CommCare)) -.->|form submitted| o[Webhook Trigger]
+    c([CommCare]) -.->|form submitted| o((Webhook Trigger))
     subgraph OpenFn
     o --> v[Validate Form]
     v --> d[Create dhis2 TEI]
@@ -16,6 +16,9 @@ flowchart TD
     f --> h[Send to HAPI]
     f --> g[Send to Google API]
     end
+    h --> hd[(HAPI FHIR Instance)]
+    g --> gd[(Google FHIR Store)]
+    d --> dd[(DHIS2 Instance)]
 ```
 
 You can run the whole workflow offline using
