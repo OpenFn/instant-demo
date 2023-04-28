@@ -1,26 +1,46 @@
-# OpenFn & HAPI FHIR Demo
+# OpenFn & HAPI FHIR Demos
 
-[![CircleCI](https://circleci.com/gh/OpenFn/instant-demo.svg?style=svg)](https://circleci.com/gh/OpenFn/instant-demo)
+## Lightning
+
+The `/lightning` folder contains a working demo (running at app.openfn.org) that
+receives data from CommCare, validates it, loads it to DHIS2, converts it to
+fhir, and sends it to two FHIR backends (HAPI and a Google FHIR api.)
+
+```mermaid
+flowchart TB
+    CHW --> OpenFn
+    OpenFn --> v[Validate Form]
+    v --> Create dhis2 TEI
+    v --> f[Convert to FHIR]
+    f --> Send to HAPI
+    f --> Send to Google API
+```
+
+You can run the whole workflow offline using `openfn -ia ./lightning/workflow.json`
+
+## Microservice
 
 A demo of OpenFn Microservice, OpenHIM and HAPI FHIR using Instant OpenHIE.
 
 It contains a custom instant config (in `openfn/`) which loads everything.
 
-The `microservice` project.yaml file is located here: [`openfn/docker/config/project.yaml`](openfn/docker/config/project.yaml).
+The `microservice` project.yaml file is located here:
+[`openfn/docker/config/project.yaml`](openfn/docker/config/project.yaml).
 
 ## How data gets to HAPI FHIR
 
 Using the example payload [commcare_sample.json](fixtures/commcare_sample.json)
 we send that to the configured OpenFn Microservice.
 
-Microservice is configurated to run a job based on the shape of the incoming 
+Microservice is configurated to run a job based on the shape of the incoming
 payload _see [project.yaml](openfn/docker/config/project.yaml)_.
 
 The job `commcare-to-him` will match against this message and will be invoked
 performing the following actions:
 
 - creates a payload in the FHIR standard containing
-  - a Encounter resource that contains (`contained` resource field) a Paitent resource
+  - a Encounter resource that contains (`contained` resource field) a Paitent
+    resource
 - sends the payload to OpenHIM
 - which in turn sends the payload to HAPI FHIR
 
