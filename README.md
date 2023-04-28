@@ -7,7 +7,7 @@ receives data from CommCare, validates it, loads it to DHIS2, converts it to
 fhir, and sends it to two FHIR backends (HAPI and a Google FHIR api.)
 
 ```mermaid
-flowchart TB
+graph TD
     CHW --> OpenFn
     OpenFn --> v[Validate Form]
     v --> Create dhis2 TEI
@@ -16,7 +16,8 @@ flowchart TB
     f --> Send to Google API
 ```
 
-You can run the whole workflow offline using `openfn -ia ./lightning/workflow.json`
+You can run the whole workflow offline using
+`openfn -ia ./lightning/workflow.json`
 
 ## Microservice
 
