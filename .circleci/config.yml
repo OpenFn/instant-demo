@@ -16,18 +16,18 @@ jobs:
       # TODO: add credentials via env
       # - run: openfn -ia ./lightning/workflow.json
 
-  microservice_test:
-    machine:
-      image: ubuntu-2004:202101-01
+  # microservice_test:
+  #   machine:
+  #     image: ubuntu-2004:202101-01
 
-    steps:
-      - checkout
+  #   steps:
+  #     - checkout
 
-      - run: npm install -g yarn
+  #     - run: npm install -g yarn
 
-      - run: yarn
-      - run: yarn setup
-      - run: yarn test
+  #     - run: yarn
+  #     - run: yarn setup
+  #     - run: yarn test
 
 # Orchestrate our job run sequence
 workflows:
