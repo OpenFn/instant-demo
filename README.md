@@ -9,6 +9,7 @@ fhir, and sends it to two FHIR backends (HAPI and a Google FHIR api.)
 ```mermaid
 flowchart TD
     c([CommCare]) -.->|form submitted| o((Webhook Trigger))
+    Note right of C: This could be any mobile app or CHW tool.
     subgraph OpenFn
     o --> v[Validate Form]
     v --> d[Create dhis2 TEI]
