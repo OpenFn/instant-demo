@@ -1,13 +1,16 @@
-# Elixir CircleCI 2.0 configuration file
 version: 2.1
+orbs:
+  node: circleci/node@5.0.2
 jobs:
   lightning_cli_test:
     docker:
-      - image: cimg/node:18.0.0
-
+      - image: cimg/base:stable
     steps:
       - checkout
-
+      - node/install:
+          install-yarn: true
+          node-version: '16.13'
+      - run: node --version
       - run: npm install -g @openfn/cli
 
       # TODO: add credentials via env
