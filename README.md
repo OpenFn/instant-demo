@@ -7,13 +7,13 @@ receives data from CommCare, validates it, loads it to DHIS2, converts it to
 fhir, and sends it to two FHIR backends (HAPI and a Google FHIR api.)
 
 ```mermaid
-graph TD
-    CHW --> OpenFn
-    OpenFn --> v[Validate Form]
-    v --> Create dhis2 TEI
+flowchart TD
+    c[CHW] --> o[OpenFn]
+    o --> v[Validate Form]
+    v --> d[Create dhis2 TEI]
     v --> f[Convert to FHIR]
-    f --> Send to HAPI
-    f --> Send to Google API
+    f --> h[Send to HAPI]
+    f --> g[Send to Google API]
 ```
 
 You can run the whole workflow offline using
