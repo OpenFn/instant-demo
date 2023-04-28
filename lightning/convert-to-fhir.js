@@ -1,9 +1,9 @@
 fn(state => {
-  const { patient_data } = state.data.form;
+  const { person } = state;
 
   const patient = {
     resourceType: 'Patient',
-    id: patient_data.patient_id,
+    id: person.patient_id,
     identifier: [
       {
         use: 'usual',
@@ -16,25 +16,25 @@ fn(state => {
           ],
         },
         system: 'urn:oid:0.1.2.3.4.5.6.7',
-        value: patient_data.patient_id,
+        value: person.patient_id,
       },
     ],
     name: [
       {
         use: 'official',
-        family: patient_data.age.last_name,
-        given: [patient_data.age.first_name],
+        family: person.last_name,
+        given: [person.first_name],
       },
     ],
-    gender: patient_data.age.gender,
-    birthDate: patient_data.age.birthDate,
+    gender: person.gender,
+    birthDate: person.age.birthDate,
   };
 
   const encounter = {
     resourceType: 'Encounter',
     status: 'finished',
     subject: {
-      reference: `Patient/${patient_data.patient_id}`,
+      reference: `Patient/${person.patient_id}`,
     },
   };
 
