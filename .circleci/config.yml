@@ -1,6 +1,18 @@
 # Elixir CircleCI 2.0 configuration file
 version: 2.1
 jobs:
+  lightning_test:
+    machine:
+        image: ubuntu-2004:202101-01
+
+      steps:
+        - checkout
+
+        - run: npm install -g @openfn/cli
+
+        # TODO: add credentials via env
+        # - run: openfn -ia ./lightning/workflow.json
+
   docker_test:
     machine:
       image: ubuntu-2004:202101-01
@@ -14,10 +26,9 @@ jobs:
       - run: yarn setup
       - run: yarn test
 
-
 # Orchestrate our job run sequence
 workflows:
   tests:
     jobs:
-      # TODO - add CLI test for Lightning workflow 
+      - lightning_test
       # - docker_test
