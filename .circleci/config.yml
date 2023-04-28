@@ -1,22 +1,38 @@
-# Elixir CircleCI 2.0 configuration file
 version: 2.1
+orbs:
+  node: circleci/node@5.0.2
 jobs:
-  docker_test:
-    machine:
-      image: ubuntu-2004:202101-01
-
+  lightning_cli_test:
+    docker:
+      - image: cimg/base:stable
     steps:
       - checkout
+      - node/install:
+          install-yarn: true
+          node-version: '18.12'
+      - run: node --version
 
-      - run: npm install -g yarn
+      # TODO: add credentials via env
+      # - run: npm install @openfn/cli
+      # - run: openfn -ia ./lightning/workflow.json
 
-      - run: yarn
-      - run: yarn setup
-      - run: yarn test
+  # microservice_test:
+  #   machine:
+  #     image: ubuntu-2004:202101-01
 
+  #   steps:
+  #     - checkout
+
+  #     - run: npm install -g yarn
+
+  #     - run: yarn
+  #     - run: yarn setup
+  #     - run: yarn test
 
 # Orchestrate our job run sequence
 workflows:
   tests:
     jobs:
-      - docker_test
+      - lightning_cli_test
+      # TODO: if we plan to bring back support for microservice...
+      # - microservice_test
