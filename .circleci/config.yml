@@ -3,15 +3,15 @@ version: 2.1
 jobs:
   lightning_test:
     machine:
-        image: ubuntu-2004:202101-01
+      image: ubuntu-2004:202101-01
 
-      steps:
-        - checkout
+    steps:
+      - checkout
 
-        - run: npm install -g @openfn/cli
+      - run: npm install -g @openfn/cli
 
-        # TODO: add credentials via env
-        # - run: openfn -ia ./lightning/workflow.json
+      # TODO: add credentials via env
+      # - run: openfn -ia ./lightning/workflow.json
 
   docker_test:
     machine:
