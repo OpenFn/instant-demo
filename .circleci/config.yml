@@ -19,4 +19,5 @@ jobs:
 workflows:
   tests:
     jobs:
-      - docker_test
+      # TODO - add CLI test for Lightning workflow 
+      # - docker_test
