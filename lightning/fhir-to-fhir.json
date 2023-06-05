@@ -1,0 +1,20 @@
+{
+    "start": "getPatient",
+    "jobs": [
+        {
+            "id": "getPatient",
+            "expression": "./getPatientBundleFHIR.js",
+            "configuration": "tmp/fhir-creds.json",
+            "adaptor": "fhir",
+            "next": {
+                "create": true
+            }
+        },
+        {
+            "id": "create",
+            "adaptor": "fhir",
+            "expression": "./createPatientBundleFHIR.js",
+            "configuration": "tmp/hapi-creds.json"
+        }
+    ]
+}
