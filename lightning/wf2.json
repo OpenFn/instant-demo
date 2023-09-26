@@ -7,7 +7,7 @@
             "configuration": "./tmp/hive-credential.json",
             "expression": "health-stack-analysis.js",
             "next": {
-                "aggregate-to-dhis2": "state.error"
+                "aggregate-to-dhis2": "!state.error"
             }
         },
         {

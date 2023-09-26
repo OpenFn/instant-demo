@@ -22,16 +22,20 @@ fn(state => {
     return age;
   };
 
-  const uniqueIds = new Set();
-  const patients = state.data.filter(patient => {
-    if (!uniqueIds.has(patient.pid)) {
-      uniqueIds.add(patient.pid);
-      return true;
-    }
-    return false;
+  const patients = state.data.map(patient => {
+    const age = calculateAge(patient.birthDate);
+    return { ...patient, age };
   });
 
-  console.log(state.data.length, 'Patients before deduplicate');
-  console.log(patients.length, 'Patients');
-  return { ...state, data: {}, result: {}, patients };
+  const femalePatients = patients.filter(
+    patient => patient.gender === 'female'
+  );
+
+  const malePatients = patients.filter(patient => patient.gender === 'male');
+
+  console.log(patients.length, 'Total number of patients');
+  console.log(femalePatients.length, 'Total number of female patients');
+  console.log(malePatients.length, 'Total number of male patients');
+
+  return { ...state, data: {}, result: {}, femalePatients, malePatients };
 });
