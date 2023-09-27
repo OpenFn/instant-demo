@@ -1,0 +1,380 @@
+[
+    {
+        "id": "11107",
+        "meta": {
+            "versionId": "1",
+            "lastUpdated": "2023-09-19T13:09:34.000+00:00",
+            "source": null,
+            "profile": [
+                "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
+            ],
+            "security": null,
+            "tag": null
+        },
+        "implicitRules": null,
+        "language": null,
+        "text": {
+            "status": "generated",
+            "div": null
+        },
+        "contained": null,
+        "identifier": [
+            {
+                "use": null,
+                "type": null,
+                "system": "https://github.com/synthetichealth/synthea",
+                "value": "6abcea8c-a576-e496-8e5f-9fecb55dcf25",
+                "period": null,
+                "assigner": null
+            },
+            {
+                "use": null,
+                "type": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                            "version": null,
+                            "code": "MR",
+                            "display": "Medical Record Number",
+                            "userSelected": null
+                        }
+                    ],
+                    "text": "Medical Record Number"
+                },
+                "system": "http://hospital.smarthealthit.org",
+                "value": "6abcea8c-a576-e496-8e5f-9fecb55dcf25",
+                "period": null,
+                "assigner": null
+            },
+            {
+                "use": null,
+                "type": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                            "version": null,
+                            "code": "SS",
+                            "display": "Social Security Number",
+                            "userSelected": null
+                        }
+                    ],
+                    "text": "Social Security Number"
+                },
+                "system": "http://hl7.org/fhir/sid/us-ssn",
+                "value": "999-55-7944",
+                "period": null,
+                "assigner": null
+            },
+            {
+                "use": null,
+                "type": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                            "version": null,
+                            "code": "DL",
+                            "display": "Driver's License",
+                            "userSelected": null
+                        }
+                    ],
+                    "text": "Driver's License"
+                },
+                "system": "urn:oid:2.16.840.1.113883.4.3.25",
+                "value": "S99931484",
+                "period": null,
+                "assigner": null
+            },
+            {
+                "use": null,
+                "type": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                            "version": null,
+                            "code": "PPN",
+                            "display": "Passport Number",
+                            "userSelected": null
+                        }
+                    ],
+                    "text": "Passport Number"
+                },
+                "system": "http://standardhealthrecord.org/fhir/StructureDefinition/passportNumber",
+                "value": "X81768448X",
+                "period": null,
+                "assigner": null
+            }
+        ],
+        "active": null,
+        "name": [
+            {
+                "use": "official",
+                "text": null,
+                "family": "Marvin195",
+                "given": [
+                    "Jerry654"
+                ],
+                "prefix": [
+                    "Ms."
+                ],
+                "suffix": null,
+                "period": null
+            }
+        ],
+        "telecom": [
+            {
+                "system": "phone",
+                "value": "555-284-5400",
+                "use": "home",
+                "rank": null,
+                "period": null
+            }
+        ],
+        "gender": "female",
+        "birthDate": "1998-12-12",
+        "deceased": null,
+        "address": [
+            {
+                "use": null,
+                "type": null,
+                "text": null,
+                "line": [
+                    "564 Quitzon Forge"
+                ],
+                "city": "Marshfield",
+                "district": null,
+                "state": "MA",
+                "postalCode": "02050",
+                "country": "US",
+                "period": null
+            }
+        ],
+        "maritalStatus": {
+            "coding": [
+                {
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+                    "version": null,
+                    "code": "S",
+                    "display": "Never Married",
+                    "userSelected": null
+                }
+            ],
+            "text": "Never Married"
+        },
+        "multipleBirth": {
+            "boolean": false,
+            "integer": null
+        },
+        "photo": null,
+        "contact": null,
+        "communication": [
+            {
+                "id": null,
+                "language": {
+                    "coding": [
+                        {
+                            "system": "urn:ietf:bcp:47",
+                            "version": null,
+                            "code": "en-US",
+                            "display": "English",
+                            "userSelected": null
+                        }
+                    ],
+                    "text": "English"
+                },
+                "preferred": null
+            }
+        ],
+        "generalPractitioner": null,
+        "managingOrganization": null,
+        "link": null
+    },
+    {
+        "id": "13171",
+        "meta": {
+            "versionId": "1",
+            "lastUpdated": "2023-09-19T13:09:36.000+00:00",
+            "source": null,
+            "profile": [
+                "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
+            ],
+            "security": null,
+            "tag": null
+        },
+        "implicitRules": null,
+        "language": null,
+        "text": {
+            "status": "generated",
+            "div": null
+        },
+        "contained": null,
+        "identifier": [
+            {
+                "use": null,
+                "type": null,
+                "system": "https://github.com/synthetichealth/synthea",
+                "value": "cc4e734c-272f-170f-705a-28acede04ff9",
+                "period": null,
+                "assigner": null
+            },
+            {
+                "use": null,
+                "type": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                            "version": null,
+                            "code": "MR",
+                            "display": "Medical Record Number",
+                            "userSelected": null
+                        }
+                    ],
+                    "text": "Medical Record Number"
+                },
+                "system": "http://hospital.smarthealthit.org",
+                "value": "cc4e734c-272f-170f-705a-28acede04ff9",
+                "period": null,
+                "assigner": null
+            },
+            {
+                "use": null,
+                "type": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                            "version": null,
+                            "code": "SS",
+                            "display": "Social Security Number",
+                            "userSelected": null
+                        }
+                    ],
+                    "text": "Social Security Number"
+                },
+                "system": "http://hl7.org/fhir/sid/us-ssn",
+                "value": "999-78-8627",
+                "period": null,
+                "assigner": null
+            },
+            {
+                "use": null,
+                "type": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                            "version": null,
+                            "code": "DL",
+                            "display": "Driver's License",
+                            "userSelected": null
+                        }
+                    ],
+                    "text": "Driver's License"
+                },
+                "system": "urn:oid:2.16.840.1.113883.4.3.25",
+                "value": "S99997141",
+                "period": null,
+                "assigner": null
+            },
+            {
+                "use": null,
+                "type": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                            "version": null,
+                            "code": "PPN",
+                            "display": "Passport Number",
+                            "userSelected": null
+                        }
+                    ],
+                    "text": "Passport Number"
+                },
+                "system": "http://standardhealthrecord.org/fhir/StructureDefinition/passportNumber",
+                "value": "X79318349X",
+                "period": null,
+                "assigner": null
+            }
+        ],
+        "active": null,
+        "name": [
+            {
+                "use": "official",
+                "text": null,
+                "family": "Witting912",
+                "given": [
+                    "Loren192"
+                ],
+                "prefix": [
+                    "Mr."
+                ],
+                "suffix": null,
+                "period": null
+            }
+        ],
+        "telecom": [
+            {
+                "system": "phone",
+                "value": "555-984-9305",
+                "use": "home",
+                "rank": null,
+                "period": null
+            }
+        ],
+        "gender": "male",
+        "birthDate": "1965-09-16",
+        "deceased": null,
+        "address": [
+            {
+                "use": null,
+                "type": null,
+                "text": null,
+                "line": [
+                    "848 Willms Park Apt 69"
+                ],
+                "city": "Wellesley",
+                "district": null,
+                "state": "MA",
+                "postalCode": "02481",
+                "country": "US",
+                "period": null
+            }
+        ],
+        "maritalStatus": {
+            "coding": [
+                {
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+                    "version": null,
+                    "code": "M",
+                    "display": "M",
+                    "userSelected": null
+                }
+            ],
+            "text": "M"
+        },
+        "multipleBirth": {
+            "boolean": false,
+            "integer": null
+        },
+        "photo": null,
+        "contact": null,
+        "communication": [
+            {
+                "id": null,
+                "language": {
+                    "coding": [
+                        {
+                            "system": "urn:ietf:bcp:47",
+                            "version": null,
+                            "code": "fr-FR",
+                            "display": "French (France)",
+                            "userSelected": null
+                        }
+                    ],
+                    "text": "French (France)"
+                },
+                "preferred": null
+            }
+        ],
+        "generalPractitioner": null,
+        "managingOrganization": null,
+        "link": null
+    }
+]

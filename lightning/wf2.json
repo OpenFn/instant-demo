@@ -1,0 +1,20 @@
+{
+    "start": "health-stack-analysis",
+    "jobs": [
+        {
+            "id": "health-stack-analysis",
+            "adaptor": "hive",
+            "configuration": "./tmp/hive-credential.json",
+            "expression": "health-stack-analysis.js",
+            "next": {
+                "aggregate-to-dhis2": "!state.error"
+            }
+        },
+        {
+            "id": "aggregate-to-dhis2",
+            "adaptor": "dhis2",
+            "configuration": "./tmp/play-credential.json",
+            "expression": "aggregate-to-dhis2.js"
+        }
+    ]
+}
