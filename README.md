@@ -1,6 +1,6 @@
 # OpenFn & HAPI FHIR Demos
 
-## Lightning
+## Lightning (OpenFn v2)
 
 The `/lightning` folder contains a working demo (running at app.openfn.org) that
 receives data from CommCare, validates it, loads it to DHIS2, converts it to
